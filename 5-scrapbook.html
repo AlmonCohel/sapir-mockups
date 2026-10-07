@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כיוון 5 · היומן של כולנו</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Playpen+Sans+Hebrew:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Playpen Sans Hebrew', cursive; color: #2F2A26; overflow-x: hidden;
+    background: #CDB89B radial-gradient(120% 80% at 50% 0%, #E2D2B8, #B89E7E); }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .5' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .page { position: relative; z-index: 1; max-width: 860px; margin: 40px auto; padding: 60px 26px 80px; min-height: 100vh;
+    background: #FBF6EC; border-radius: 6px 18px 18px 6px;
+    background-image: repeating-linear-gradient(180deg, transparent 0 37px, rgba(90,140,190,.22) 37px 38px), linear-gradient(90deg, transparent 0 calc(100% - 46px), rgba(220,90,90,.35) calc(100% - 46px) calc(100% - 44px), transparent 0);
+    box-shadow: 0 1px 0 #fff inset, 0 40px 80px -30px rgba(60,40,20,.6), -8px 0 0 -2px #EFE6D5, -16px 4px 0 -4px #E5D9C3; }
+  .rings { position: absolute; top: 40px; bottom: 40px; right: -14px; width: 28px;
+    background: radial-gradient(circle at 50% 50%, #9A8F84 0 7px, #D7D0C6 8px 10px, transparent 11px) 0 0 / 28px 54px; }
+  .tape { position: absolute; width: 110px; height: 30px; background: rgba(240,200,120,.75); box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
+  .tape.pink { background: rgba(240,150,160,.7); } .tape.mint { background: rgba(150,210,190,.75);
+    background-image: repeating-linear-gradient(45deg, transparent 0 6px, rgba(255,255,255,.35) 6px 12px); }
+
+  .head { text-align: center; position: relative; }
+  .head small { font-size: 15px; opacity: .6; }
+  h1 { font-family: 'Amatic SC', cursive; font-size: clamp(64px, 17vw, 140px); line-height: .9; margin: 10px 0; }
+  h1 .u { position: relative; display: inline-block; }
+  h1 .u svg { position: absolute; bottom: -6px; left: 0; width: 100%; height: 20px; overflow: visible; }
+  h1 .u path { fill: none; stroke: #E0675A; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 1.4s .9s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .lead { font-size: 18px; line-height: 38px; max-width: 520px; margin: 18px auto 0; text-align: center; font-weight: 300; }
+
+  .collage { position: relative; height: 760px; margin-top: 30px; }
+  .it { position: absolute; touch-action: none; cursor: grab; user-select: none; opacity: 0; animation: drop .9s cubic-bezier(.2,1.4,.4,1) forwards; }
+  .it:active { cursor: grabbing; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-60px) rotate(calc(var(--r) * 3)) scale(1.25); } to { opacity: 1; transform: rotate(var(--r)); } }
+  .polaroid { background: #fff; padding: 10px 10px 46px; box-shadow: 0 10px 24px -8px rgba(40,25,10,.45); width: 190px; }
+  .polaroid .ph { width: 100%; aspect-ratio: 1; display: grid; place-items: center; font-size: 64px; }
+  .polaroid span { position: absolute; bottom: 10px; inset-inline: 0; text-align: center; font-size: 15px; }
+  .note { width: 210px; padding: 18px 18px 22px; font-size: 16px; line-height: 1.5; box-shadow: 0 8px 18px -8px rgba(40,25,10,.4); }
+  .note.y { background: #FFE98F; } .note.b { background: #CFE3F5; } .note.p { background: #F9D3D3; }
+  .note b { display: block; font-family: 'Amatic SC'; font-size: 30px; line-height: 1; margin-bottom: 6px; }
+  .note em { display: block; font-style: normal; font-size: 12.5px; opacity: .55; margin-top: 8px; }
+  .sticker { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; text-align: center; font-family: 'Amatic SC'; font-size: 24px; line-height: .95; color: #fff;
+    background: #E0675A; box-shadow: 0 0 0 5px #fff, 0 10px 20px -6px rgba(0,0,0,.35); }
+
+  .list { margin: 40px auto 0; max-width: 520px; }
+  .list h2, .form h2 { font-family: 'Amatic SC'; font-size: 52px; line-height: 1; margin-bottom: 4px; }
+  .list li { list-style: none; font-size: 18px; line-height: 38px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+  .box { width: 22px; height: 22px; border: 2px solid #2F2A26; border-radius: 4px 6px 3px 7px; position: relative; flex: none; }
+  .box svg { position: absolute; inset: -8px -6px -4px -2px; overflow: visible; }
+  .box path { fill: none; stroke: #E0675A; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 40; stroke-dashoffset: 40; transition: stroke-dashoffset .4s ease; }
+  li.done .box path { stroke-dashoffset: 0; }
+  li.done .t { text-decoration: line-through wavy rgba(224,103,90,.6); }
+  .list .sum { margin-top: 10px; font-size: 16px; opacity: .75; min-height: 38px; }
+
+  .form { max-width: 520px; margin: 50px auto 0; position: relative; background: #fff; padding: 34px 26px 28px; transform: rotate(-1deg); box-shadow: 0 16px 30px -12px rgba(40,25,10,.45); }
+  .form .tape { top: -14px; left: 40%; }
+  .form label { display: block; font-size: 16px; margin-top: 14px; }
+  .form input { width: 100%; font: inherit; font-size: 20px; border: 0; border-bottom: 2px dashed #2F2A26; background: transparent; padding: 6px 2px; outline: none; }
+  .form button { margin-top: 22px; font-family: 'Amatic SC'; font-size: 34px; background: #2F2A26; color: #FBF6EC; border: 0; padding: 8px 28px; border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; cursor: pointer; }
+  @media (max-width: 640px) {
+    .collage { height: auto; display: flex; flex-direction: column; align-items: flex-start; padding: 10px 0 20px; }
+    .collage .it { position: relative; inset: auto !important; margin-top: -18px; }
+    .collage .it:nth-child(even) { align-self: flex-end; }
+    .collage .it.sticker { align-self: center; margin: -30px 0 -30px; z-index: 5; }
+    .collage .it.tape { display: none; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .it { opacity: 1; transform: rotate(var(--r)); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="rings"></div>
+  <div class="head">
+    <small>ספיר פורסילן · ליווי התפתחותי וייעוץ שינה</small>
+    <h1>היומן של <span class="u">כולנו<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M4 12 C40 4 80 18 120 9 S180 6 196 12"/></svg></span></h1>
+    <p class="lead">כל אמא כותבת יומן בראש. הצעד הראשון, הלילה הקשה, הצחוק הראשון. אצלי בסדנאות כותבים אותו יחד — ומגלים שאף אחת לא לבד.</p>
+  </div>
+
+  <div class="collage" id="col">
+    <div class="it polaroid" style="--r:-6deg; top:10px; right:2%; animation-delay:.1s"><div class="ph" style="background:linear-gradient(135deg,#F6C9B4,#E9A08A)">🤸</div><span>סדנת תנועה · יום ג׳</span></div>
+    <div class="it note y" style="--r:4deg; top:40px; left:4%; animation-delay:.3s"><b>השבוע הוא התהפך לבד!!</b>ישבתי על השטיח ובכיתי מאושר. ואז כל הקבוצה בכתה איתי 😂<em>— מיכל, אמא של יואב · דוגמה</em></div>
+    <div class="it sticker" style="--r:12deg; top:250px; left:42%; animation-delay:.55s">ישנה<br>8 שעות!</div>
+    <div class="it polaroid" style="--r:5deg; top:300px; left:3%; animation-delay:.45s"><div class="ph" style="background:linear-gradient(135deg,#BFD8C8,#86B39B)">☕</div><span>הקפה שאחרי</span></div>
+    <div class="it note b" style="--r:-3deg; top:280px; right:4%; animation-delay:.65s"><b>ייעוץ שינה</b>שגרה רגועה בגישה רכה. בלי לחץ ובלי "לתת לבכות".<em>מיפוי · תוכנית · ליווי צמוד</em></div>
+    <div class="it note p" style="--r:2deg; top:520px; right:20%; animation-delay:.8s"><b>מפגש אישי</b>שעה רק לכם, אצלי בבקעת אונו או אצלכם בבית.<em>יוצאים עם תוכנית ביד</em></div>
+    <div class="it polaroid" style="--r:-8deg; top:540px; left:8%; animation-delay:.95s"><div class="ph" style="background:linear-gradient(135deg,#C8D3F0,#97A9DD)">👨‍🍼</div><span>מפגש אבות</span></div>
+    <div class="it tape pink" style="--r:-20deg; top:2px; right:10%; animation-delay:.2s"></div>
+    <div class="it tape mint" style="--r:15deg; top:292px; left:9%; animation-delay:.5s"></div>
+    <div class="it tape" style="--r:-6deg; top:512px; right:28%; animation-delay:.85s"></div>
+  </div>
+
+  <div class="list">
+    <h2>הצ׳קליסט שלי השבוע</h2>
+    <ul id="list">
+      <li><span class="box"><svg viewBox="0 0 30 30"><path d="M4 16 L12 24 L28 2"/></svg></span><span class="t">5 דקות זמן בטן ביום</span></li>
+      <li><span class="box"><svg viewBox="0 0 30 30"><path d="M4 16 L12 24 L28 2"/></svg></span><span class="t">טקס שינה קבוע (אמבטיה, שיר, חושך)</span></li>
+      <li><span class="box"><svg viewBox="0 0 30 30"><path d="M4 16 L12 24 L28 2"/></svg></span><span class="t">לשבת לקפה עם עוד אמא</span></li>
+      <li><span class="box"><svg viewBox="0 0 30 30"><path d="M4 16 L12 24 L28 2"/></svg></span><span class="t">לבקש עזרה ולא להתנצל</span></li>
+    </ul>
+    <p class="sum" id="sum">סמני מה כבר עשית ✍️</p>
+  </div>
+
+  <form class="form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='נשמר ביומן 🤍'">
+    <span class="tape"></span>
+    <h2>העמוד הבא — שלך</h2>
+    <label>קוראים לי<input autocomplete="name"></label>
+    <label>אפשר לחזור אליי ב<input inputmode="tel" autocomplete="tel"></label>
+    <label>התינוק שלי בן/בת<input></label>
+    <button>להוסיף אותי ליומן</button>
+  </form>
+</div>
+
+<script>
+  // everything on the page can be picked up and moved, like a real scrapbook
+  document.querySelectorAll('.it').forEach(el => {
+    el.addEventListener('animationend', () => { el.style.opacity = 1; el.style.animation = 'none'; el.style.transform = `rotate(${getComputedStyle(el).getPropertyValue('--r')})`; });
+    let sx, sy, ox = 0, oy = 0, dx = 0, dy = 0;
+    el.addEventListener('pointerdown', e => { el.setPointerCapture(e.pointerId); sx = e.clientX; sy = e.clientY; ox = dx; oy = dy;
+      el.style.zIndex = Date.now() % 100000; el.style.transition = 'box-shadow .2s'; el.style.boxShadow = '0 30px 40px -12px rgba(40,25,10,.5)'; });
+    el.addEventListener('pointermove', e => { if (!el.hasPointerCapture(e.pointerId)) return;
+      dx = ox + e.clientX - sx; dy = oy + e.clientY - sy; el.style.translate = `${dx}px ${dy}px`; });
+    el.addEventListener('pointerup', () => { el.style.boxShadow = ''; });
+  });
+  // checklist with encouraging replies
+  const MSG = ['סמני מה כבר עשית ✍️', 'יופי של התחלה 🌱', 'שתיים! את בדרך הנכונה', 'שלוש מארבע, וואו 🤍', 'הכל מסומן. מגיע לך קפה — בואי לסדנה ☕'];
+  const list = document.getElementById('list');
+  list.addEventListener('click', e => { const li = e.target.closest('li'); if (!li) return; li.classList.toggle('done');
+    document.getElementById('sum').textContent = MSG[list.querySelectorAll('.done').length]; });
+</script>
+</body>
+</html>

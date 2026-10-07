@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כיוון 2 · שביל הצעדים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --sand: #F4EADB; --sand2: #EADBC3; --clay: #C8553D; --olive: #5F6F32; --ink: #2B2118; --sun: #F2A541; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Rubik', sans-serif; background: var(--sand); color: var(--ink); overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .35; z-index: 0; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='4'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .3 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  header { position: fixed; top: 0; inset-inline: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 16px 22px; }
+  .logo { font-family: 'Suez One'; font-size: 20px; }
+  .age { font-weight: 700; font-size: 13px; background: var(--ink); color: var(--sand); padding: 8px 14px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+
+  .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 90px 24px 60px; z-index: 1; overflow: hidden; }
+  .hero h1 { font-family: 'Suez One'; font-weight: 400; font-size: clamp(64px, 17vw, 190px); line-height: .92; letter-spacing: -.01em; }
+  .hero h1 span { display: block; color: var(--clay); }
+  .hero p { font-size: 19px; line-height: 1.6; max-width: 440px; margin-top: 22px; }
+  .feet { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+  .hero > :not(.feet) { position: relative; }
+  .foot { position: absolute; width: 26px; height: 40px; opacity: 0; animation: step 7s infinite; color: var(--clay); }
+  @keyframes step { 0% { opacity: 0; transform: scale(.6) rotate(var(--r)); } 4% { opacity: .9; transform: scale(1) rotate(var(--r)); } 60% { opacity: .9; } 80%,100% { opacity: 0; } }
+  .cta { display: inline-flex; gap: 10px; align-items: center; margin-top: 30px; padding: 18px 28px; border-radius: 999px; background: var(--ink); color: var(--sand); font-weight: 700; font-size: 18px; text-decoration: none; width: fit-content; box-shadow: 0 6px 0 var(--clay); transition: transform .2s, box-shadow .2s; }
+  .cta:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--clay); }
+
+  .trail { position: relative; z-index: 1; height: 520vh; }
+  .trail svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .trail .bg { fill: none; stroke: var(--sand2); stroke-width: 46; stroke-linecap: round; }
+  .trail .ghost { fill: none; stroke: var(--ink); stroke-opacity: .25; stroke-width: 2; stroke-dasharray: 2 12; stroke-linecap: round; }
+  .trail .walked { fill: none; stroke: var(--clay); stroke-width: 5; stroke-linecap: round; }
+  .traveler { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-size: 30px;
+    box-shadow: 0 0 0 10px rgba(242,165,65,.25), 0 12px 30px rgba(43,33,24,.25); z-index: 5; transition: transform .1s; }
+  .station { position: absolute; width: min(330px, 74vw); z-index: 4; }
+  .station .m { font-family: 'Suez One'; font-size: 74px; line-height: 1; color: var(--olive); opacity: .2; transition: opacity .6s, transform .6s; transform: translateY(20px); }
+  .station.on .m { opacity: 1; transform: none; }
+  .station .card { background: #FFF8EE; border-radius: 24px 24px 24px 4px; padding: 20px 22px; margin-top: 8px; box-shadow: 0 2px 0 rgba(43,33,24,.08), 0 18px 40px -20px rgba(43,33,24,.35);
+    transform: translateY(30px) rotate(-2deg); opacity: 0; transition: all .8s cubic-bezier(.2,.9,.25,1.2); }
+  .station.on .card { transform: rotate(-1deg); opacity: 1; }
+  .station.alt .card { border-radius: 24px 24px 4px 24px; }
+  .station.alt.on .card { transform: rotate(1.2deg); }
+  .station h3 { font-size: 21px; margin-bottom: 4px; }
+  .station .ms { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--clay); margin-bottom: 8px; }
+  .station p { font-size: 15.5px; line-height: 1.55; }
+  .station.service .card { background: var(--olive); color: var(--sand); }
+  .station.service .ms { color: var(--sun); }
+
+  .end { min-height: 90vh; padding: 60px 24px 80px; display: grid; place-items: center; text-align: center; position: relative; z-index: 1; background: var(--ink); color: var(--sand); border-radius: 48px 48px 0 0; }
+  .end h2 { font-family: 'Suez One'; font-weight: 400; font-size: clamp(46px, 11vw, 110px); line-height: 1; }
+  .end h2 span { color: var(--sun); }
+  .end p { font-size: 18px; margin: 20px auto 0; max-width: 420px; opacity: .8; line-height: 1.6; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 26px 0; }
+  .chips button { font: inherit; border: 2px solid rgba(244,234,219,.35); background: none; color: var(--sand); padding: 10px 18px; border-radius: 999px; font-weight: 500; cursor: pointer; transition: .2s; }
+  .chips button.sel, .chips button:hover { background: var(--sun); color: var(--ink); border-color: var(--sun); }
+  .end .cta { background: var(--clay); box-shadow: 0 6px 0 #7E2F20; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .foot { opacity: .6; } }
+</style>
+</head>
+<body>
+<header><div class="logo">ספיר פורסילן</div><div class="age" id="age">גיל: יום 1</div></header>
+
+<section class="hero">
+  <div class="feet" id="feet"></div>
+  <h1>צעד<span>אחר צעד.</span></h1>
+  <p>השנתיים הראשונות הן שביל. אני הולכת אותו לצידכם — מהרמת הראש הראשונה ועד הריצה הראשונה אל הדלת.</p>
+  <a class="cta" href="#end">יוצאים לדרך ←</a>
+</section>
+
+<section class="trail" id="trail">
+  <svg id="svg" aria-hidden="true"><path class="bg" id="bg"/><path class="ghost" id="ghost"/><path class="walked" id="walked"/></svg>
+  <div class="traveler" id="trav">👶</div>
+</section>
+
+<section class="end" id="end">
+  <div>
+    <h2>הצעד הבא<br><span>שלכם.</span></h2>
+    <p>באיזו תחנה אתם עכשיו? בחרו, ואחזור אליכם עם ההמלצה שמתאימה בדיוק לשלב.</p>
+    <div class="chips" id="chips"><button>0–3 ח׳</button><button>3–6 ח׳</button><button>6–9 ח׳</button><button>9–12 ח׳</button><button>שנה+</button><button>עוד בהריון</button></div>
+    <a class="cta" href="#">דברו איתי בוואטסאפ</a>
+  </div>
+</section>
+
+<script>
+  // hero footprints: a little walk across the screen, on loop
+  const feet = document.getElementById('feet');
+  const footSVG = '<svg viewBox="0 0 26 40"><ellipse cx="13" cy="25" rx="9" ry="13" fill="currentColor"/><circle cx="5" cy="7" r="3" fill="currentColor"/><circle cx="10.5" cy="4" r="3.2" fill="currentColor"/><circle cx="16.5" cy="4.5" r="2.8" fill="currentColor"/><circle cx="21" cy="8" r="2.4" fill="currentColor"/></svg>';
+  for (let i = 0; i < 12; i++) { const f = document.createElement('div'); f.className = 'foot'; f.innerHTML = footSVG;
+    const p = i / 11; f.style.right = (6 + p*82) + '%'; f.style.top = (90 - Math.sin(p*3.1)*4 + (i%2 ? 2 : -2)) + '%';
+    f.style.setProperty('--r', (-100 + (i%2 ? 12 : -12)) + 'deg'); f.style.animationDelay = (i*.32) + 's'; feet.appendChild(f); }
+
+  const STOPS = [
+    { m: '0', ms: 'חודש 0 · הלידה', h: 'העולם חדש לגמרי', p: 'מגע, קול, ריח. איך מחזיקים, איך מרגיעים, ואיך סומכים על עצמך.' },
+    { m: '3', ms: 'חודש 3 · הרמת ראש', h: 'זמן בטן', p: 'כמה דקות ביום על הבטן בונות את כל מה שיבוא אחר כך.' },
+    { m: '★', ms: 'תחנה · סדנאות קבוצתיות', h: 'הולכים יחד', p: 'קבוצה קטנה של אמהות ותינוקות באותו שלב בדיוק. תנועה, חושים, קפה.', s: 1 },
+    { m: '5', ms: 'חודש 5 · התהפכות', h: 'הגלגול הראשון', p: 'איך מעודדים בלי לדחוף, ולמה לא ממהרים להושיב.' },
+    { m: '7', ms: 'חודש 7 · שינה', h: 'הלילות מתארכים', p: 'שגרה רגועה, בגישה רכה, שמתאימה למשפחה שלכם.' },
+    { m: '★', ms: 'תחנה · ייעוץ שינה', h: 'לילה שלם', p: 'מיפוי, תוכנית אישית, וליווי צמוד בימים הראשונים.', s: 1 },
+    { m: '9', ms: 'חודש 9 · זחילה', h: 'הבית נפתח', p: 'הזחילה היא לא שלב לדלג עליו. היא מחברת בין שני צידי הגוף והמוח.' },
+    { m: '12', ms: 'חודש 12 · הצעד הראשון', h: 'הוא הולך!', p: 'ובצעד הזה רואים את כל הדרך שעברתם יחד.' },
+    { m: '★', ms: 'תחנה · מפגש אישי', h: 'רק אתם', p: 'שעה אחד על אחד, אצלי או אצלכם, ויוצאים עם תוכנית.', s: 1 },
+    { m: '24', ms: 'חודש 24 · ריצה', h: 'ממריאים', p: 'עכשיו הם רצים — ואתם יודעים בדיוק איך ללוות.' },
+  ];
+  const trail = document.getElementById('trail'), trav = document.getElementById('trav');
+  const P = ['bg','ghost','walked'].map(id => document.getElementById(id));
+  let len = 0, stations = [];
+  function build() {
+    const W = trail.clientWidth, H = trail.clientHeight, n = STOPS.length, seg = H / (n + .5);
+    // a snake: alternate sides, gentle cubic curves between them
+    let d = `M ${W*.5} 0`; const pts = [];
+    for (let i = 0; i < n; i++) { const y = seg*(i+.75), xx = i%2 ? W*.22 : W*.78; pts.push([xx, y]);
+      const prevY = i ? seg*(i-.25) : 0, prevX = i ? (i%2 ? W*.78 : W*.22) : W*.5;
+      d += ` C ${prevX} ${prevY + seg*.55}, ${xx} ${y - seg*.55}, ${xx} ${y}`; }
+    d += ` C ${pts[n-1][0]} ${H - seg*.2}, ${W*.5} ${H - seg*.3}, ${W*.5} ${H}`;
+    P.forEach(p => p.setAttribute('d', d)); len = P[2].getTotalLength();
+    P[2].style.strokeDasharray = len; stations.forEach(s => s.remove()); stations = [];
+    STOPS.forEach((s, i) => { const el = document.createElement('div'); el.className = 'station' + (i%2 ? ' alt' : '') + (s.s ? ' service' : '');
+      el.innerHTML = `<div class="m">${s.m}</div><div class="card"><div class="ms">${s.ms}</div><h3>${s.h}</h3><p>${s.p}</p></div>`;
+      const [px, py] = pts[i]; el.style.top = (py - 40) + 'px';
+      if (i%2) el.style.left = Math.min(px + 46, W - Math.min(330, W*.74) - 10) + 'px'; else el.style.right = Math.min(W - px + 46, W - Math.min(330, W*.74) - 10) + 'px';
+      el.dataset.y = py; trail.appendChild(el); stations.push(el); });
+    onScroll();
+  }
+  function onScroll() {
+    const r = trail.getBoundingClientRect(); const t = Math.max(0, Math.min(1, (innerHeight*.5 - r.top) / r.height));
+    P[2].style.strokeDashoffset = len * (1 - t);
+    const pt = P[2].getPointAtLength(len * t); trav.style.left = pt.x + 'px'; trav.style.top = pt.y + 'px';
+    trav.textContent = t > .78 ? '🏃' : t > .62 ? '🚶' : t > .5 ? '🧸' : '👶';
+    stations.forEach(s => s.classList.toggle('on', +s.dataset.y < pt.y + 60));
+    const months = Math.round(t * 24); document.getElementById('age').textContent = t <= 0 ? 'גיל: יום 1' : months >= 24 ? 'גיל: שנתיים 🎉' : `גיל: ${months} חודשים`;
+  }
+  addEventListener('resize', build); addEventListener('scroll', onScroll, {passive: true}); build();
+  document.getElementById('chips').addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { document.querySelectorAll('.chips button').forEach(b => b.classList.remove('sel')); e.target.classList.add('sel'); } });
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כיוון 3 · בעיניים של תינוק</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --t: 0; --b: 14px; --gr: 1; --gx: 1; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Heebo', sans-serif; background: #F5F2EA; color: #111; overflow-x: hidden; }
+  /* the "world" the baby sees: fixed, filtered by scroll */
+  .world { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+  .layer { position: absolute; inset: 0; filter: blur(var(--b)); }
+  .layer.rest { filter: blur(var(--b)) grayscale(var(--gx)) contrast(1.3); }
+  .layer.red  { filter: blur(var(--b)) grayscale(var(--gr)) contrast(1.3); }
+  .s { position: absolute; border-radius: 50%; }
+  .bull { width: 70vmin; height: 70vmin; top: -8vmin; left: -18vmin;
+    background: repeating-radial-gradient(circle, #111 0 4vmin, #F5F2EA 4vmin 8vmin); animation: spin 40s linear infinite; }
+  .check { width: 46vmin; height: 46vmin; bottom: 6vh; right: -10vmin; border-radius: 28px;
+    background: conic-gradient(#1E3FD8 25%, #F5F2EA 0 50%, #1E3FD8 0 75%, #F5F2EA 0) 0 0 / 11.5vmin 11.5vmin; transform: rotate(14deg); animation: drift 14s ease-in-out infinite; }
+  .stripes { width: 38vmin; height: 90vmin; top: 30vh; left: 52vw; border-radius: 999px;
+    background: repeating-linear-gradient(90deg, #F2C230 0 3.5vmin, #111 3.5vmin 7vmin); transform: rotate(-24deg); animation: drift 18s ease-in-out infinite reverse; }
+  .dot { width: 30vmin; height: 30vmin; top: 8vh; right: 8vw; background: #E0301E; animation: bob 7s ease-in-out infinite; }
+  .half { width: 50vmin; height: 25vmin; bottom: -2vh; left: 4vw; border-radius: 50vmin 50vmin 0 0; background: #E0301E; }
+  .tri { width: 0; height: 0; top: 62vh; left: 20vw; border-radius: 0; border-left: 14vmin solid transparent; border-right: 14vmin solid transparent; border-bottom: 24vmin solid #1F8A5B; animation: drift 11s ease-in-out infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes drift { 50% { translate: 3vmin -4vmin; } }
+  @keyframes bob { 50% { translate: 0 5vmin; } }
+
+  header { position: fixed; top: 0; inset-inline: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; }
+  .logo { font-weight: 900; font-size: 18px; background: #111; color: #F5F2EA; padding: 8px 14px; }
+  .meter { font-weight: 500; font-size: 13px; background: #F5F2EA; border: 2px solid #111; padding: 6px 12px; font-variant-numeric: tabular-nums; }
+  .meter b { font-weight: 900; }
+
+  main { position: relative; z-index: 2; }
+  .panel { min-height: 120vh; display: flex; align-items: center; padding: 100px 18px; }
+  .panel:nth-child(even) { justify-content: flex-end; }
+  .box { background: #F5F2EA; border: 3px solid #111; padding: 28px 24px; max-width: 520px; box-shadow: 12px 12px 0 #111; }
+  .tag { display: inline-block; font-weight: 800; font-size: 12px; letter-spacing: .14em; padding: 4px 10px; background: #111; color: #F5F2EA; margin-bottom: 16px; }
+  h1 { font-weight: 900; font-size: clamp(46px, 12vw, 104px); line-height: .95; letter-spacing: -.03em; }
+  h2 { font-weight: 900; font-size: clamp(36px, 8vw, 68px); line-height: 1; letter-spacing: -.02em; margin-bottom: 14px; }
+  .box p { font-size: 18px; line-height: 1.6; }
+  .big-num { font-weight: 900; font-size: clamp(90px, 26vw, 220px); line-height: .85; letter-spacing: -.05em; color: #E0301E; }
+  .cm { font-weight: 800; font-size: 22px; }
+  .red { color: #E0301E; }
+  .svc { display: grid; gap: 0; margin-top: 18px; }
+  .svc div { border-top: 3px solid #111; padding: 14px 0; display: grid; grid-template-columns: 46px 1fr; gap: 10px; align-items: start; }
+  .svc i { width: 36px; height: 36px; display: block; margin-top: 3px; }
+  .svc b { font-size: 20px; font-weight: 800; display: block; }
+  .svc span { font-size: 15.5px; line-height: 1.5; }
+  .btn { display: block; text-align: center; margin-top: 22px; padding: 18px; background: #E0301E; color: #fff; font-weight: 900; font-size: 20px; text-decoration: none; border: 3px solid #111; box-shadow: 6px 6px 0 #111; transition: .15s; }
+  .btn:active { transform: translate(6px, 6px); box-shadow: none; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="world" aria-hidden="true">
+  <div class="layer rest"><div class="s bull"></div><div class="s check"></div><div class="s stripes"></div><div class="s tri"></div></div>
+  <div class="layer red"><div class="s dot"></div><div class="s half"></div></div>
+</div>
+<header><div class="logo">ספיר פורסילן</div><div class="meter">ראייה: <b id="age">שבוע 1</b></div></header>
+
+<main>
+  <section class="panel"><div class="box">
+    <span class="tag">גללי לאט</span>
+    <h1>ככה התינוק שלך רואה את העולם.</h1>
+    <p style="margin-top:16px">מטושטש, בשחור ולבן. ובכל שבוע — עוד קצת חד, עוד צבע. ההתפתחות קורית מול העיניים שלך, גם כשלא רואים אותה.</p>
+  </div></section>
+
+  <section class="panel"><div class="box">
+    <span class="tag">שבוע 1</span>
+    <div class="big-num">25</div><div class="cm">סנטימטר.</div>
+    <p style="margin-top:12px">זה כל הטווח החד של תינוק בן שבוע. בדיוק המרחק מהזרוע שלך אל הפנים שלך. <b>את</b> הדבר הכי ברור בעולם שלו.</p>
+  </div></section>
+
+  <section class="panel"><div class="box">
+    <span class="tag">חודש 2</span>
+    <h2>ואז מגיע <span class="red">האדום.</span></h2>
+    <p>הצבע הראשון שתינוקות מבחינים בו. כל שלב כזה הוא הזמנה — לגירוי הנכון, בזמן הנכון. את זה בדיוק אני מלמדת: לקרוא את התינוק שלך.</p>
+  </div></section>
+
+  <section class="panel"><div class="box">
+    <span class="tag">חודש 4 · מה אני מציעה</span>
+    <h2>כלים לכל שלב.</h2>
+    <div class="svc">
+      <div><i style="background:#E0301E;border-radius:50%"></i><p><b>סדנאות קבוצתיות</b><span>תנועה, חושים ותקשורת לגילאי 0–2, עם אמהות באותו שלב.</span></p></div>
+      <div><i style="background:repeating-linear-gradient(90deg,#F2C230 0 6px,#111 6px 12px)"></i><p><b>מפגשים אישיים</b><span>שעה אחד על אחד, אצלי או אצלכם, ויוצאים עם תוכנית.</span></p></div>
+      <div><i style="background:#1E3FD8"></i><p><b>ייעוץ שינה</b><span>שגרה רגועה בגישה רכה, בלי לחץ.</span></p></div>
+      <div><i style="width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:32px solid #1F8A5B"></i><p><b>אבות · מתנות</b><span>מפגשי אבות ושובר מתנה ללידה.</span></p></div>
+    </div>
+  </div></section>
+
+  <section class="panel"><div class="box">
+    <span class="tag">חודש 8 · הכל חד</span>
+    <h2>עכשיו גם את רואה בבירור.</h2>
+    <p>מה מתאים לשלב שלכם, מה לעשות היום, ומה יכול לחכות. שיחת היכרות קצרה, בלי התחייבות.</p>
+    <a class="btn" href="#">בואי נדבר</a>
+  </div></section>
+</main>
+
+<script>
+  const root = document.documentElement, age = document.getElementById('age');
+  const clamp = v => Math.max(0, Math.min(1, v));
+  function onScroll() {
+    const t = clamp(scrollY / (document.body.scrollHeight - innerHeight));
+    root.style.setProperty('--b', (14 * Math.pow(1 - t, 1.6)).toFixed(2) + 'px');   // focus sharpens
+    root.style.setProperty('--gr', (1 - clamp((t - .28) * 4)).toFixed(3));          // red arrives first
+    root.style.setProperty('--gx', (1 - clamp((t - .52) * 3)).toFixed(3));          // then everything else
+    age.textContent = t < .15 ? 'שבוע 1' : t < .4 ? 'חודש 2' : t < .65 ? 'חודש 4' : t < .9 ? 'חודש 6' : 'חודש 8 · חדה';
+  }
+  addEventListener('scroll', onScroll, {passive: true}); onScroll();
+</script>
+</body>
+</html>
